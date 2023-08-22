@@ -40,8 +40,6 @@ int _printf(const char *format, ...)
 
 			else if (*format == 'c')
 			{
-				if (*format == NULL)
-					return (6);
 				char c = va_arg(arg_list, int);
 
 				write(1, &c, 1);
