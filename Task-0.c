@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		int str_len = 0;
 
 		if (*format != '%')
-		{
+	
 			write(1, format, 1);
 			char_print++;
 		}
@@ -40,6 +40,8 @@ int _printf(const char *format, ...)
 
 			else if (*format == 'c')
 			{
+				if (*format == NULL)
+					return (6);
 				char c = va_arg(arg_list, int);
 
 				write(1, &c, 1);
@@ -59,4 +61,5 @@ int _printf(const char *format, ...)
 	}
 	va_end(arg_list);
 	return (char_print);
+	}
 }
