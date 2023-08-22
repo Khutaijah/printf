@@ -6,7 +6,7 @@
  * Return: number of characters printed to standard output
  **/
 
-int _printf(const char *format, ...);
+int _printf(const char *format, ...)
 {
 
 	int char_print = 0;
@@ -15,15 +15,17 @@ int _printf(const char *format, ...);
 
 	if (format == NULL)
 	{
-		return (-)1;
+		return (-1);
 	}
 	va_start(arg_list, format);
 	while (*format)
 	{
+		int str_len = 0;
+
 		if (*format != '%')
 		{
 			write(1, format, 1);
-				char_print++;
+			char_print++;
 		}
 		else
 		{
@@ -33,7 +35,7 @@ int _printf(const char *format, ...);
 			if (*format == '%')
 			{
 				write(1, format, 1);
-					char_print++;
+				char_print++;
 			}
 
 			else if (*format == 'c')
@@ -45,12 +47,10 @@ int _printf(const char *format, ...);
 			}
 			else if (*format == 's')
 			{
-				va_arg(arg_list, char*);
-
-				int str_len = 0;
+				char *str = va_arg(arg_list, char*);
 
 				while (str[str_len] != '\0')
-					str_len++;
+				str_len++;
 				write(1, str, str_len);
 				char_print += str_len;
 			}
