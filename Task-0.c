@@ -1,9 +1,9 @@
 #include "main.h"
 
 /*
- * _printf = Print f
- * @format = format
- * Returns number of printed characters to standard output
+ * _printf = my own printf
+ * @format = format string
+ * Return: number of characters printed to standard output
  **/
 
 int _printf(const char *format, ...);
@@ -15,14 +15,14 @@ int _printf(const char *format, ...);
 
 	if (format == NULL)
 	{
-		return ('-1');
+		return -1;
 	}
 	va_start(arg_list, format);
 	while (*format)
 	{
-		if (*format != "%")
+		if (*format != '%')
 		{
-			write(1, format, 1)
+			write(1, format, 1);
 				char_print++;
 		}
 		else
@@ -32,7 +32,7 @@ int _printf(const char *format, ...);
 				break;
 			if (*format == '%')
 			{
-				write(1, format, 1)
+				write(1, format, 1);
 					char_print++;
 			}
 
@@ -43,19 +43,19 @@ int _printf(const char *format, ...);
 				write(1, &c, 1);
 				char_print++;
 			}
-			else if (*format == "s")
+			else if (*format == 's')
 			{
 				char *str = (arg_list, char*);
 
-				int str_len
+				int str_len = 0
 				while (str[str_len] != '\0')
 					str_len++;
 				write(1, str, str_len);
 				char_print += str_len;
-	}
-		{
-		format++;
+			}
 		}
-va_end(arg_list);
-	return (char_print);
+		format++;
+	}
+	va_end(arg_list);
+	return char_print;
 }
