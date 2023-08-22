@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		int str_len = 0;
 
 		if (*format != '%')
-	
+		{
 			write(1, format, 1);
 			char_print++;
 		}
