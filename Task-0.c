@@ -20,8 +20,6 @@ int _printf(const char *format, ...)
 	va_start(arg_list, format);
 	while (*format)
 	{
-		int str_len = 0;
-
 		if (*format != '%')
 		{
 			write(1, format, 1);
@@ -49,10 +47,25 @@ int _printf(const char *format, ...)
 			{
 				char *str = va_arg(arg_list, char*);
 
-				while (str[str_len] != '\0')
-				str_len++;
-				write(1, str, str_len);
-				char_print += str_len;
+				if (str == NULL)
+				{
+					write(1, "(null)", 6);
+					char_print += 6;
+				}
+				else
+				{
+					while (*str)
+					{
+						write(1, str, 1);
+						char_print++;
+						str++;
+					}
+				}
+			}
+			else
+			{
+				write(1, format - 1, 2);
+				char_print += 2;
 			}
 		}
 		format++;
