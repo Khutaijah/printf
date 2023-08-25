@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 
 	int char_print = 0;
-
+	int num_digits = 0;
 	va_list arg_list;
 
 	if (format == NULL)
@@ -75,7 +75,6 @@ int _printf(const char *format, ...)
 
 				}
 
-				int num_digits = 0;
 				int temp = num;
 
 				do
@@ -89,7 +88,14 @@ int _printf(const char *format, ...)
 				char num_str[num_digits + 1];
 				num_str[num_digits] = '\0';
 
+				int i;
 				for (int i = num_digits - 1; i >= 0; i--)
+				{
+					num_str[i] = (num % 10) + '0';
+					num /= 10;
+				}
+				write(1, num_str, num_digits);
+				char_print += num_digits;
 			}
 			else
 			{
