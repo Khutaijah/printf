@@ -8,8 +8,8 @@
  * Return: number of characters printed to standard output
  **/
 
-int _printf(const char *format, ...)
-{
+/*int _printf(const char *format, ...)
+{**/
 	int char_print = 0;
 	va_list arg_list;
 
@@ -45,4 +45,4 @@ int _printf(const char *format, ...)
 	format++;
 
 	return (char_print);
-}
+
