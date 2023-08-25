@@ -62,6 +62,35 @@ int _printf(const char *format, ...)
 					}
 				}
 			}
+			else if (*format == 'd' || *format == 'i')
+			{
+				int num = va_arg(arg_list, int);
+
+				if (num < 0)
+
+				{
+					write(1, "-", 1);
+					char_print++;
+					num = -num;
+
+				}
+
+				int num_digits = 0;
+				int temp = num;
+
+				do
+
+				{
+
+					temp /= 10;
+					num_digits++;
+				} while (temp > 0);
+
+				char num_str[num_digits + 1];
+				num_str[num_digits] = '\0';
+
+				for (int i = num_digits - 1; i >= 0; i--)
+			}
 			else
 			{
 				write(1, format - 1, 2);
