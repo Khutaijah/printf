@@ -1,5 +1,4 @@
 #include "main.h"
-#include <stdlib.h> 
 
 /*
  * _printf = my own printf
@@ -11,7 +10,7 @@ int _printf(const char *format, ...)
 {
 
 	int char_print = 0;
-	int num_digits = 0;
+
 	va_list arg_list;
 
 	if (format == NULL)
@@ -62,63 +61,15 @@ int _printf(const char *format, ...)
 						str++;
 					}
 				}
-
 			}
 			else
 			{
 				write(1, format - 1, 2);
 				char_print += 2;
-
-
-				}
-				else if (*format == 'd' || *format == 'i')
-				{
-					int num = va_arg(arg_list, int);
-					int num_copy = num;
-
-					if (num == 0)
-					{
-						write(1, "0", 1);
-						char_print++;
-					}
-					else
-					{
-						int num_digits = 0;
-
-						while (num_copy != 0)
-						{
-							num_copy /= 10;
-							num_digits++;
-						}
-						char *num_str = malloc(num_digits + 1);
-						if (num_str == NULL)
-							return (-1);
-
-						num_str[num_digits] = '\0';
-
-
-						while (num != 0)
-						{
-							num_digits--;
-							num_str[num_digits] = (num % 10) + '0';
-							num /= 10;
-						}
-						write(1, num_str, num_digits + 1);
-						char_print += num_digits + 1;
-
-						free(num_str);
-					}
-
-					}
-					else
-					{
-						write(1, format - 1, 2);
-						char_print += 2;
-					}
-				}
-				format++;
 			}
-
-    va_end(arg_list);
-    return (char_print);
+		}
+		format++;
+	}
+	va_end(arg_list);
+	return (char_print);
 }
