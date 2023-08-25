@@ -61,11 +61,12 @@ int _printf(const char *format, ...)
 						str++;
 					}
 				}
+
+				}
 				else if (*format == 'd' || *format == 'i')
 				{
 					int num = va_arg(arg_list, int);
 					int num_copy = num;
-					int num_digits = 0;
 
 					if (num == 0)
 					{
@@ -74,6 +75,8 @@ int _printf(const char *format, ...)
 					}
 					else
 					{
+						int num_digits = 0;
+
 						while (num_copy != 0)
 						{
 							num_copy /= 10;
@@ -83,7 +86,7 @@ int _printf(const char *format, ...)
 						num_str[num_digits] = '\0';
 
 
-						while (num != 0);
+						while (num != 0)
 						{
 							num_digits--;
 							num_str[num_digits] = (num % 10) + '0';
