@@ -2,12 +2,12 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-/**
- * _printf - Custom printf function
- * @format: Format string
- *
- * Return: Number of characters printed
+/*
+ * _printf = my own printf
+ * @format = format string
+ * Return: number of characters printed to standard output
  **/
+
 int _printf(const char *format, ...)
 {
 	int char_print = 0;
