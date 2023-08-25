@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h> 
 
 /*
  * _printf = my own printf
@@ -82,7 +83,10 @@ int _printf(const char *format, ...)
 							num_copy /= 10;
 							num_digits++;
 						}
-						char num_str[num_digits + 1];
+						char *num_str = malloc(num_digits + 1);
+						if (num_str == NULL)
+							return (-1);
+
 						num_str[num_digits] = '\0';
 
 
@@ -92,8 +96,12 @@ int _printf(const char *format, ...)
 							num_str[num_digits] = (num % 10) + '0';
 							num /= 10;
 						}
-						write(1, num_str, num_digits);
-						char_print += num_digits;
+						write(1, num_str, num_digits + 1);
+						char_print += num_digits + 1;
+
+						free(num_str);
+					}
+
 					}
 					else
 					{
